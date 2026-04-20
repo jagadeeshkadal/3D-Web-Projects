@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+
 import { Compass, Instagram, Twitter, Mail, ArrowUp } from 'lucide-react';
 
 export const Footer = () => {

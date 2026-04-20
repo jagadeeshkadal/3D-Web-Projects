@@ -83,7 +83,7 @@ export const Destinations = () => {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
         >
-          {destinations.map((dest, i) => (
+          {destinations.map((dest) => (
             <motion.div
               key={dest.name}
               variants={cardVariants}
