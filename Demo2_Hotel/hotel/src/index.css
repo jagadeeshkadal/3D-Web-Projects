@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #1FB4B4;
+}
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white;
+    font-family: 'Inter', sans-serif;
+  }
+
+  ::selection {
+    background: rgba(31, 180, 180, 0.3);
+    color: white;
+  }
+}
+
+@layer components {
+  .luxury-heading {
+    font-family: 'Cormorant Garamond', serif;
+    @apply uppercase;
+    letter-spacing: 0.2em;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(31, 180, 180, 0.4);
+}
+
+/* Ensure video covers properly */
+video {
+  object-fit: cover;
+}
