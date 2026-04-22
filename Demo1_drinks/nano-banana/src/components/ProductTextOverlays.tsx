@@ -16,15 +16,15 @@ interface SectionProps {
 }
 
 const TextSection: React.FC<SectionProps> = ({ title, subtitle, range, progress }) => {
-  const opacity = useTransform(progress, [range[0], range[0] + 0.1, range[1] - 0.1, range[1]], [0, 1, 1, 0]);
-  const y = useTransform(progress, [range[0], range[0] + 0.1, range[1] - 0.1, range[1]], [50, 0, 0, -50]);
+  const opacity = useTransform(progress, [range[0], range[0] + 0.05, range[1] - 0.05, range[1]], [0, 1, 1, 0]);
+  const y = useTransform(progress, [range[0], range[0] + 0.05, range[1] - 0.05, range[1]], [50, 0, 0, -50]);
 
   return (
     <motion.div
       style={{ opacity, y }}
       className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pointer-events-none"
     >
-      <h2 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none mb-4">
+      <h2 className="text-6xl md:text-8xl font-black text-white uppercase tracking-normal leading-none mb-4">
         {title}
       </h2>
       <p className="text-xl md:text-2xl text-white/80 font-medium max-w-2xl">
@@ -47,25 +47,25 @@ export const ProductTextOverlays: React.FC<Props> = ({ product }) => {
         <TextSection
           title={product.section1.title}
           subtitle={product.section1.subtitle}
-          range={[0.15, 0.3]}
+          range={[0.05, 0.28]}
           progress={scrollYProgress}
         />
         <TextSection
           title={product.section2.title}
           subtitle={product.section2.subtitle}
-          range={[0.4, 0.55]}
+          range={[0.32, 0.53]}
           progress={scrollYProgress}
         />
         <TextSection
           title={product.section3.title}
           subtitle={product.section3.subtitle}
-          range={[0.65, 0.8]}
+          range={[0.57, 0.78]}
           progress={scrollYProgress}
         />
         <TextSection
           title={product.section4.title}
           subtitle={product.section4.subtitle}
-          range={[0.88, 0.98]}
+          range={[0.82, 0.98]}
           progress={scrollYProgress}
         />
       </div>

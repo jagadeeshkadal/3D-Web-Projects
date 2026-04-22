@@ -20,10 +20,10 @@ export const Hero: React.FC<Props> = ({ product }) => {
       className="h-screen absolute top-0 left-0 right-0 z-20 flex flex-col items-center justify-center pointer-events-none"
     >
       <div className="text-center px-6">
-        <h1 className="text-8xl md:text-[10rem] font-black text-white uppercase tracking-tighter leading-[0.85] mb-4">
+        <h1 className="text-8xl md:text-[10rem] font-black text-white uppercase tracking-normal leading-[0.85] mb-4">
           {product.name}
         </h1>
-        <p className="text-2xl md:text-5xl font-medium text-white/90 tracking-tight mb-16">
+        <p className="text-2xl md:text-5xl font-medium text-white/90 tracking-normal mb-16">
           {product.section1.subtitle}
         </p>
 

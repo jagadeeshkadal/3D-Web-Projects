@@ -1,5 +1,30 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 import { Sparkles, Shield, Globe } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+
+const StatCounter = ({ end, suffix, label }: { end: number, suffix: string, label: string }) => {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, Math.round);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (isInView) {
+      const animation = animate(count, end, { duration: 2.5, ease: "easeOut" });
+      return animation.stop;
+    }
+  }, [count, end, isInView]);
+
+  return (
+    <div ref={ref} className="text-center">
+      <p className="text-5xl md:text-7xl font-serif text-white mb-4 flex justify-center tracking-normal">
+        <motion.span>{rounded}</motion.span>
+        <span>{suffix}</span>
+      </p>
+      <p className="text-xs uppercase tracking-[0.4em] text-white/70 font-sans">{label}</p>
+    </div>
+  );
+};
 
 const features = [
   {
@@ -20,6 +45,7 @@ const features = [
 ];
 
 export const About = () => {
+
   return (
     <section id="about" className="py-28 md:py-40 px-6 md:px-12 bg-black relative overflow-hidden">
       {/* Subtle background texture */}
@@ -33,22 +59,42 @@ export const About = () => {
       <div className="relative max-w-6xl mx-auto">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.4 }
+            }
+          }}
           className="text-center mb-24"
         >
-          <p className="text-[10px] uppercase tracking-[0.4em] text-accent mb-4 font-sans">
+          <motion.p 
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+            }}
+            className="text-sm uppercase tracking-[0.4em] text-accent mb-4 font-sans"
+          >
             Why Choose Us
-          </p>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif uppercase tracking-tight text-white font-light mb-8">
-            Beyond The<br />Horizon
-          </h2>
-          <p className="text-white/35 font-sans text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-            Tailored itineraries for the modern explorer. We don't just find destinations; 
-            we curate experiences that linger in the soul long after the journey ends.
-          </p>
+          </motion.p>
+          
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, scale: 0.9, y: 30 },
+              visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+            }}
+          >
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif uppercase tracking-[0.15em] text-white font-light mb-8">
+              Beyond The Horizon
+            </h2>
+            <p className="text-white/70 font-sans font-light text-lg md:text-xl max-w-4xl mx-auto leading-loose tracking-[0.1em] text-justify">
+              Tailored itineraries for the modern explorer. We don't just find destinations; 
+              we curate experiences that linger in the soul long after the journey ends.
+            </p>
+          </motion.div>
         </motion.div>
 
         {/* Feature cards */}
@@ -56,10 +102,10 @@ export const About = () => {
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, scale: 0.9, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: i * 0.2, ease: "easeOut" }}
               className="group text-center md:text-left"
             >
               {/* Top line */}
@@ -72,11 +118,11 @@ export const About = () => {
                 <feature.icon className="w-5 h-5 text-white/40 group-hover:text-accent transition-colors duration-500" />
               </div>
 
-              <h3 className="text-lg uppercase tracking-[0.15em] font-serif text-white mb-4 
+              <h3 className="text-xl uppercase tracking-[0.2em] font-serif text-white mb-5 
                              group-hover:text-accent transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p className="text-sm text-white/25 font-sans leading-relaxed group-hover:text-white/40 transition-colors duration-500">
+              <p className="text-sm md:text-base text-white/60 font-sans font-light leading-loose tracking-[0.1em] group-hover:text-white transition-colors duration-500 text-left">
                 {feature.desc}
               </p>
             </motion.div>
@@ -92,15 +138,12 @@ export const About = () => {
           className="mt-24 pt-16 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-8"
         >
           {[
-            { value: "150+", label: "Destinations" },
-            { value: "12K", label: "Happy Travelers" },
-            { value: "98%", label: "Satisfaction" },
-            { value: "24/7", label: "Concierge" },
+            { end: 150, suffix: "+", label: "Destinations" },
+            { end: 12, suffix: "K", label: "Happy Travelers" },
+            { end: 98, suffix: "%", label: "Satisfaction" },
+            { end: 24, suffix: "/7", label: "Concierge" },
           ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-3xl md:text-4xl font-serif text-white mb-2">{stat.value}</p>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-sans">{stat.label}</p>
-            </div>
+            <StatCounter key={stat.label} end={stat.end} suffix={stat.suffix} label={stat.label} />
           ))}
         </motion.div>
       </div>

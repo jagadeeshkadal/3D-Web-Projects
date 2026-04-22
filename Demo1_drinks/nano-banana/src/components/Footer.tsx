@@ -64,7 +64,7 @@ export const Footer = () => {
         </div>
 
         <div className="pt-10 border-t border-gray-900 flex flex-col md:row justify-between items-center gap-6 text-xs text-gray-500 font-medium">
-          <p>© 2024 NANO BANANA INC. ALL RIGHTS RESERVED.</p>
+          <p>© 2026 NANO BANANA INC. ALL RIGHTS RESERVED.</p>
           <div className="flex gap-8">
             <a href="#" className="hover:text-white">PRIVACY POLICY</a>
             <a href="#" className="hover:text-white">TERMS OF SERVICE</a>

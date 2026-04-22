@@ -21,10 +21,10 @@ export const Gallery = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
-          <p className="text-[10px] uppercase tracking-[0.4em] text-accent mb-4 font-sans">
+          <p className="text-sm uppercase tracking-[0.4em] text-accent mb-4 font-sans">
             Visual Journey
           </p>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif uppercase tracking-tight text-white font-light">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif uppercase tracking-[0.15em] text-white font-light">
             Gallery
           </h2>
         </motion.div>

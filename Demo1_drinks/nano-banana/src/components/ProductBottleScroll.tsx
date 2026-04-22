@@ -60,22 +60,20 @@ export const ProductBottleScroll: React.FC<Props> = ({ product }) => {
         // Clear canvas
         context.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Draw image with "contain" logic
+        // Draw image with "cover" logic
         const wrh = image.width / image.height;
-        const newWidth = canvas.width;
-        const newHeight = newWidth / wrh;
-        let psw = 0;
-        let psh = (canvas.height - newHeight) / 2;
+        let newWidth = canvas.width;
+        let newHeight = newWidth / wrh;
         
-        if (newHeight > canvas.height) {
-          const newHeightAlt = canvas.height;
-          const newWidthAlt = newHeightAlt * wrh;
-          psw = (canvas.width - newWidthAlt) / 2;
-          psh = 0;
-          context.drawImage(image, psw, psh, newWidthAlt, newHeightAlt);
-        } else {
-          context.drawImage(image, psw, psh, newWidth, newHeight);
+        if (newHeight < canvas.height) {
+          newHeight = canvas.height;
+          newWidth = newHeight * wrh;
         }
+        
+        const psw = (canvas.width - newWidth) / 2;
+        const psh = (canvas.height - newHeight) / 2;
+        
+        context.drawImage(image, psw, psh, newWidth, newHeight);
       }
       
       requestAnimationFrame(render);

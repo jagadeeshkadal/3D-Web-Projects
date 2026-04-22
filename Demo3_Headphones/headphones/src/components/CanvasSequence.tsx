@@ -1,7 +1,5 @@
-"use client";
-
-import React, { useRef, useEffect, useState } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { useTransform, MotionValue } from "framer-motion";
 
 const FRAME_COUNT = 240;
 
@@ -9,14 +7,13 @@ const FRAME_COUNT = 240;
 const currentFrame = (index: number) =>
   `/frames/ezgif-frame-${index.toString().padStart(3, "0")}.jpg`;
 
-export default function CanvasSequence() {
+export default function CanvasSequence({ scrollProgress }: { scrollProgress: MotionValue<number> }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [images, setImages] = useState<HTMLImageElement[]>([]);
-  const { scrollYProgress } = useScroll();
 
   // Map scroll progress to frame index
   // The first frame is 1, the last is FRAME_COUNT
-  const frameIndex = useTransform(scrollYProgress, [0, 1], [1, FRAME_COUNT]);
+  const frameIndex = useTransform(scrollProgress, [0, 1], [1, FRAME_COUNT]);
 
   useEffect(() => {
     // Preload images
@@ -101,7 +98,7 @@ export default function CanvasSequence() {
   }, [frameIndex, images]);
 
   return (
-    <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
+    <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
       <canvas
         ref={canvasRef}
         className="w-full h-full object-cover"

@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Menu, X, Compass } from 'lucide-react';
+import { Menu, X, Compass, User } from 'lucide-react';
 import { useState } from 'react';
 
 export const Header = () => {
@@ -50,36 +50,42 @@ export const Header = () => {
           </span>
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-10">
-          {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-300 font-sans relative group"
-            >
-              {item}
-              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent transition-all duration-400 group-hover:w-full" />
-            </a>
-          ))}
-        </nav>
+        {/* Right side group */}
+        <div className="flex items-center gap-10 z-10">
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-10">
+            {navItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-[11px] uppercase tracking-[0.25em] text-white/80 hover:text-white transition-colors duration-300 font-sans relative group"
+              >
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent transition-all duration-400 group-hover:w-full" />
+              </a>
+            ))}
+          </nav>
 
-        {/* Right side */}
-        <div className="flex items-center gap-6 z-10">
-          <a
-            href="#booking"
-            className="hidden md:inline-block px-7 py-2.5 border border-white/25 text-[10px] uppercase tracking-[0.25em] text-white font-sans
-                       hover:bg-white hover:text-black transition-all duration-400"
-          >
-            Reserve
-          </a>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-white p-1"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          {/* Action Buttons */}
+          <div className="flex items-center gap-6">
+            <a
+              href="#booking"
+              className="hidden md:inline-block px-7 py-2.5 border border-white/25 text-[10px] uppercase tracking-[0.25em] text-white font-sans
+                         hover:bg-white hover:text-black transition-all duration-400"
+            >
+              Reserve
+            </a>
+            <button className="hidden md:flex p-2.5 bg-white/10 hover:bg-white hover:text-black text-white rounded-full border border-white/20 transition-all">
+              <User size={18} />
+            </button>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden text-white p-1"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
       </motion.header>
 

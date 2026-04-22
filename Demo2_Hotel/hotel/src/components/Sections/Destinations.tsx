@@ -63,13 +63,13 @@ export const Destinations = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-20"
         >
-          <p className="text-[10px] uppercase tracking-[0.4em] text-accent mb-4 font-sans">
+          <p className="text-sm uppercase tracking-[0.4em] text-accent mb-4 font-sans">
             Curated Collection
           </p>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif uppercase tracking-tight text-white font-light mb-6">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif uppercase tracking-[0.15em] text-white font-light mb-6">
             Exclusive Stays
           </h2>
-          <p className="text-white/35 font-sans text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+          <p className="text-white/70 font-sans font-light text-lg md:text-xl max-w-4xl mx-auto leading-loose tracking-[0.1em] text-justify">
             Handpicked sanctuaries where luxury meets nature. Each destination 
             offers an experience that transcends the ordinary.
           </p>
@@ -109,7 +109,7 @@ export const Destinations = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="flex items-center gap-2 mb-2">
                     <MapPin className="w-3 h-3 text-accent" />
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-white/70 font-sans">{dest.subtitle}</span>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-white/90 font-sans">{dest.subtitle}</span>
                   </div>
                 </div>
 
@@ -118,14 +118,14 @@ export const Destinations = () => {
               </div>
 
               {/* Text below */}
-              <h3 className="text-xl md:text-2xl font-serif uppercase tracking-wide text-white mb-2 group-hover:text-accent transition-colors duration-300">
+              <h3 className="text-xl md:text-2xl font-serif uppercase tracking-[0.2em] text-white mb-2 group-hover:text-accent transition-colors duration-300">
                 {dest.name}
               </h3>
-              <p className="text-white/30 text-sm font-sans mb-4 leading-relaxed">
+              <p className="text-sm md:text-base text-white/60 font-sans font-light leading-loose tracking-[0.1em] mb-4 group-hover:text-white transition-colors duration-500 text-left">
                 {dest.description}
               </p>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-white/40 font-sans tracking-wide">{dest.price}</span>
+                <span className="text-xs text-white/80 font-sans tracking-wide">{dest.price}</span>
                 <div className="flex items-center gap-2 text-accent text-xs font-sans uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span>Explore</span>
                   <ArrowRight className="w-3 h-3" />

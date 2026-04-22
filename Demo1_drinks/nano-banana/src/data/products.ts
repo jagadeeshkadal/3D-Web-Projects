@@ -59,7 +59,7 @@ export const products: Product[] = [
       imageAlt: "Mango Details",
     },
     freshnessSection: {
-      title: "Farm to Bottle",
+      title: "Farm to Your Hands",
       description:
         "We believe in absolute transparency. From the orchard to the bottle, our process is designed to minimize oxidation and maximize flavor. HPP (High Pressure Processing) ensures that our juice stays safe and fresh without any heat treatment, keeping the vital enzymes and vitamins intact.",
     },

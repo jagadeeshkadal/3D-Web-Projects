@@ -81,10 +81,10 @@ export const BookingForm = () => {
           <p className="text-[10px] uppercase tracking-[0.4em] text-accent mb-4 font-sans">
             Begin Your Journey
           </p>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif uppercase tracking-tight text-white font-light mb-4">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif uppercase tracking-wider text-white font-light mb-4">
             Reserve Your Stay
           </h2>
-          <p className="text-white/30 font-sans text-sm tracking-wide">
+          <p className="text-white/80 font-sans text-sm tracking-widest text-justify">
             Your sanctuary is waiting.
           </p>
         </motion.div>
