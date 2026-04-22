@@ -1,6 +1,6 @@
-import { motion, AnimatePresence, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 import { Sparkles, Shield, Globe } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const StatCounter = ({ end, suffix, label }: { end: number, suffix: string, label: string }) => {
   const count = useMotionValue(0);
